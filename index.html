@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/scripts.js"></script>
     <title>better have my money</title>
   </head>
   <body>
@@ -16,7 +20,7 @@
               <label for="firstDep">Initial Deposit:</label>
               <input type="text" id="firstDep">
             </div>
-            <button type="submit" id="newAcct" class="btn btn-primary">Register</button>
+            <button type="button" id="newAcct" class="btn btn-primary">Register</button>
           </div>
         </form>
 
@@ -37,7 +41,11 @@
 
 <!-- balance displays here -->
       <div class="row results">
-        <p>Your current balance is: <span id="balance"></span></p>
+        <p>Hello <span class="userName"></span></p>
+        <p>Your current balance is: <span class="balance"></span></p>
+        <p>Your initial balance was: <span class="initial"></span></p>
+        <ul id="transaction">
+        </ul>
       </div>
     </div>
   </body>
