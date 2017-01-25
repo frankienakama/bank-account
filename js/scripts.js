@@ -11,8 +11,8 @@ BankAccount.prototype.makeWithdrawal = function(balance, withdrawal) {
   return this.balance - this.withdrawal;
 }
 
-BankAccount.prototype.makeDeposit = function() {
-  this.balance + this.deposit;
+BankAccount.prototype.makeDeposit = function(balance, deposit) {
+  return this.balance + this.deposit;
 }
 
 
@@ -42,6 +42,6 @@ $(document).ready(function () {
     var balance = new BankAccount(currentBal, newDeposit, newWithdrawal);
 
     $("#transaction").text(balance.makeWithdrawal());
-    // $("#transaction").text(balance.makeDeposit());
+    $("#transaction").text(balance.makeDeposit());
   });
 });
