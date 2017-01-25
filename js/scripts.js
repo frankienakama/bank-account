@@ -1,47 +1,73 @@
 // backend
 
 //define each tranaction amount
-function BankAccount(balance, deposit, withdrawal) {
+function BankAccount(balance) {
   this.balance = balance;
-  this.deposit = deposit;
-  this.withdrawal = withdrawal;
+  this.history = [];
+}
+//transaction history
+function Transaction(type, amount) {
+  this.type = type;
+  this.amount = amount;
 }
 //stuff
-BankAccount.prototype.makeWithdrawal = function(balance, withdrawal) {
-  return this.balance - this.withdrawal;
+BankAccount.prototype.makeDeposit = function(deposit) {
+  this.balance += deposit;
+}
+BankAccount.prototype.makeWithdrawal = function(withdrawal) {
+  this.balance -= withdrawal;
+}
+Transaction.prototype.displayHistory = function() {
+  return this.type + this.amount;
 }
 
-BankAccount.prototype.makeDeposit = function(balance, deposit) {
-  return this.balance + this.deposit;
-}
 
 
 // frontend
 $(document).ready(function () {
-// first form submit (name and initial deposit)
+// make the balance variable global
+  var bankAcct = new BankAccount(0);
+// first form
   $("#bank-acct").submit(function(event){
     event.preventDefault();
-  });
-  $("#newAcct").click(function() {
-    var user = $("#name").val();
-    var firstDep = $("#firstDep").val();
 
-    $(".userName").text(user);
-    $(".initial").text(firstDep);
+    var userName = $("#name").val();
+    var firstDep = parseFloat($("#firstDep").val());
+    bankAcct.makeDeposit(firstDep);
+
+    $(".userName").text(", " + userName);
+    $(".initial").text("$" + bankAcct.balance);
   });
+
 
 // second form submit (deposit and withdrawal)
   $("#adjust-acct").submit(function(event) {
     event.preventDefault();
-  });
-  $("#changeMoney").click(function() {
-    var currentBal = parseInt($("span.initial").val());
-    var newDeposit = parseInt($("#newDep").val());
-    var newWithdrawal = parseInt($("#withdrawal").val());
 
-    var balance = new BankAccount(currentBal, newDeposit, newWithdrawal);
+    var newDeposit = parseFloat($("#newDep").val());
+    if(isNaN(newDeposit)) {
+      newDeposit = 0;
+    }
+    bankAcct.makeDeposit(newDeposit);
+    $("#newDep").val("0");
 
-    $("span.balace").text(balance.makeWithdrawal());
-    $("span.balance").text(balance.makeDeposit());
+    var newWithdrawal = parseFloat($("#withdrawal").val());
+    if(isNaN(newWithdrawal)){
+      newWithdrawal = 0;
+    }
+    bankAcct.makeWithdrawal(newWithdrawal);
+
+    $("span.balance").text("$" + bankAcct.balance);
+
+    var total = newDeposit - newWithdrawal;
+    if(total < 0) {
+      var type = "withdrawal";
+    } else {
+      var type = "deposit";
+    }
+
+    var transaction = new Transaction(type, total)
+
+    $("ul#transaction").append("<li>" + transaction.displayHistory() + "</li>");
   });
 });

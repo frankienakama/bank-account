@@ -12,38 +12,34 @@
       <div class="row">
 <!-- form to register new acct -->
         <form id="bank-acct">
-          <div class="col-md-5">
             <div class="group-form">
               <h2>Register a new acct:</h2>
               <label for="name">Name</label>
               <input type="text" id="name">
               <label for="firstDep">Initial Deposit:</label>
-              <input type="number" id="firstDep">
+              <input type="text" id="firstDep">
             </div>
-            <button type="button" id="newAcct" class="btn btn-primary">Register</button>
-          </div>
+            <button type="submit" id="newAcct" class="btn btn-primary">Register</button>
         </form>
 
 <!-- form to make adjustments to acct -->
         <form id="adjust-acct">
-          <div class="col-md-5">
             <div class="group-form">
               <h2>Deposit or withdraw funds:</h2>
-              <label for="newDep">Deposit Amount:</label>
-              <input type="number" id="newDep">
-              <label for="withdrawal">Withdrawal Amount:</label>
-              <input type="number" id="withdrawal">
+              <p><label for="newDep">Deposit Amount:</label>
+              <input type="text" id="newDep" value="0"></p>
+              <p><label for="withdrawal">Withdrawal Amount:</label>
+              <input type="text" id="withdrawal" value="0"></p>
             </div>
             <button type="submit" id="changeMoney" class="btn btn-primary">Accept</button>
-          </div>
         </form>
       </div>
 
 <!-- balance displays here -->
       <div class="row results">
-        <p>Hello <span class="userName"></span></p>
-        <p>Your current balance is: <span class="balance"></span></p>
+        <p>Hello<span class="userName"></span></p>
         <p>Your initial balance was: <span class="initial"></span></p>
+        <p>Your current balance is: <span class="balance"></span></p>
         <ul id="transaction">
         </ul>
       </div>
