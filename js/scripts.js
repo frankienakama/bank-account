@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     var balance = new BankAccount(currentBal, newDeposit, newWithdrawal);
 
-    $("#transaction").text(balance.makeWithdrawal());
-    $("#transaction").text(balance.makeDeposit());
+    $("span.balace").text(balance.makeWithdrawal());
+    $("span.balance").text(balance.makeDeposit());
   });
 });
